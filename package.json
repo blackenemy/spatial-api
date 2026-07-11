@@ -1,0 +1,46 @@
+{
+  "name": "spatial-api",
+  "version": "1.0.0",
+  "description": "Mini Spatial Data Platform — REST API for spatial data management with PostGIS",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/main.js",
+    "dev": "ts-node src/main.ts",
+    "typeorm": "typeorm",
+    "migration:generate": "typeorm migration:generate",
+    "migration:run": "typeorm migration:run",
+    "migration:revert": "typeorm migration:revert",
+    "seed": "ts-node src/seed.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@nestjs/common": "^11.1.28",
+    "@nestjs/config": "^4.0.4",
+    "@nestjs/core": "^11.1.28",
+    "@nestjs/platform-express": "^11.1.28",
+    "@nestjs/swagger": "^11.4.5",
+    "@nestjs/typeorm": "^11.0.3",
+    "@scalar/nestjs-api-reference": "^1.2.9",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.15.1",
+    "dotenv": "^17.4.2",
+    "geojson": "^0.5.0",
+    "pg": "^8.22.0",
+    "reflect-metadata": "^0.2.2",
+    "swagger-ui-express": "^5.0.1",
+    "typeorm": "^1.0.0"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^11.0.23",
+    "@types/express": "^5.0.6",
+    "@types/geojson": "^7946.0.16",
+    "@types/node": "^26.1.1",
+    "ts-loader": "^9.6.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^7.0.2"
+  }
+}

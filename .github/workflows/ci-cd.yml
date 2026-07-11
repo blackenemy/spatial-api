@@ -1,0 +1,77 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  DEPLOY_HOST: root@10.0.0.6
+  REMOTE_DIR: /opt/spatial/api
+  DB_HOST: "10.0.0.5"
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+
+  deploy:
+    name: Deploy → 10.0.0.6
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Free disk space + clean npm cache
+        run: |
+          rm -rf node_modules dist /root/.npm/_cacache 2>/dev/null || true
+          npm cache clean --force 2>/dev/null || true
+          df -h .
+
+      - name: Build
+        run: |
+          npm ci
+          npm run build
+
+      - name: Setup SSH
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          echo "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keygen -R 10.0.0.6 2>/dev/null || true
+          ssh-keyscan -H 10.0.0.6 >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Sync to remote
+        run: |
+          ssh -i ~/.ssh/deploy_key ${DEPLOY_HOST} "mkdir -p ${REMOTE_DIR}"
+          rsync -azP --delete \
+            -e "ssh -i ~/.ssh/deploy_key" \
+            --exclude='node_modules/' \
+            --exclude='.env' \
+            dist package.json package-lock.json ecosystem.config.cjs \
+            "${DEPLOY_HOST}:${REMOTE_DIR}/"
+
+      - name: Install deps + migrate + reload
+        run: |
+          ssh -i ~/.ssh/deploy_key "${DEPLOY_HOST}" 'set -e; \
+            cd '"${REMOTE_DIR}"'; \
+            npm ci --omit=dev; \
+            DATABASE_URL=postgres://spatial:spatial@'"${DB_HOST}"':5432/spatial \
+            npx typeorm migration:run -d dist/database.js || true; \
+            pm2 startOrReload ecosystem.config.cjs --update-env; \
+            pm2 save'
+
+      - name: Status
+        run: ssh -i ~/.ssh/deploy_key "${DEPLOY_HOST}" "pm2 list | grep spatial-api"

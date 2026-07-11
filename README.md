@@ -60,6 +60,8 @@ npm run build && npm start
 หลัก (REST): `GET/POST /places`, `GET/PATCH/DELETE /places/:id`,
 `GET /places/nearby?lng=&lat=&radius=` — กรองรายการได้ด้วย `?bbox=`, `?type=`, `?q=`
 
+Spatial query: `POST /places/within` — ส่ง GeoJSON Polygon → คืนสถานที่ที่อยู่ข้างใน (PostGIS `ST_Within`)
+
 มาตรฐาน OGC API - Features: `/conformance`, `/collections`, `/collections/places/items[/:id]`
 
 ดูรายละเอียดเต็ม: Swagger ที่ `/docs`, Scalar ที่ `/api-doc`, หรือไฟล์ `openapi.json`

@@ -533,6 +533,70 @@
               "body": ""
             }
           ]
+        },
+        {
+          "name": "Find places within a polygon",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"polygon\": {\n    \"type\": \"Polygon\",\n    \"coordinates\": [\n      [\n        [\n          100.3,\n          13.5\n        ],\n        [\n          100.75,\n          13.5\n        ],\n        [\n          100.75,\n          13.95\n        ],\n        [\n          100.3,\n          13.95\n        ],\n        [\n          100.3,\n          13.5\n        ]\n      ]\n    ]\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/places/within",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "places",
+                "within"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Find places within a polygon (200)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"polygon\": {\n    \"type\": \"Polygon\",\n    \"coordinates\": [\n      [\n        [\n          100.3,\n          13.5\n        ],\n        [\n          100.75,\n          13.5\n        ],\n        [\n          100.75,\n          13.95\n        ],\n        [\n          100.3,\n          13.95\n        ],\n        [\n          100.3,\n          13.5\n        ]\n      ]\n    ]\n  }\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/places/within",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "places",
+                    "within"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"id\": \"a161358c-7c67-45e9-a1fa-0feaf187b83c\",\n      \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          100.51,\n          13.7266\n        ]\n      },\n      \"properties\": {\n        \"name\": \"ไอคอนสยาม\",\n        \"type\": \"attraction\",\n        \"description\": \"ศูนย์การค้าริมแม่น้ำเจ้าพระยา\",\n        \"createdAt\": \"2026-07-11T13:25:09.493Z\"\n      }\n    },\n    {\n      \"type\": \"Feature\",\n      \"id\": \"siam-line\",\n      \"geometry\": {\n        \"type\": \"LineString\",\n        \"coordinates\": [\n          [\n            100.5247,\n            13.7539\n          ],\n          [\n            100.5312,\n            13.7453\n          ]\n        ]\n      },\n      \"properties\": {\n        \"name\": \"ถนนสีลม\",\n        \"type\": \"other\",\n        \"description\": null,\n        \"createdAt\": \"2026-07-11T14:00:00.000Z\"\n      }\n    }\n  ]\n}"
+            }
+          ]
         }
       ]
     },

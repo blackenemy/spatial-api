@@ -63,6 +63,18 @@ export class PlacesService {
     return this.toFeatureCollection(places);
   }
 
+  async findWithin(polygon: object): Promise<PlaceFeatureCollectionDto> {
+    // ST_Within: return places whose geometry falls inside the given GeoJSON polygon.
+    const places = await this.placesRepository
+      .createQueryBuilder('p')
+      .where('ST_Within(p.geom, ST_SetSRID(ST_GeomFromGeoJSON(:poly), 4326))', {
+        poly: JSON.stringify(polygon),
+      })
+      .orderBy('p.createdAt', 'DESC')
+      .getMany();
+    return this.toFeatureCollection(places);
+  }
+
   async findOne(id: string): Promise<PlaceFeatureDto> {
     const place = await this.placesRepository.findOne({ where: { id } });
     if (!place) {

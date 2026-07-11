@@ -14,6 +14,7 @@ import { ApiTags, ApiQuery, ApiResponse, ApiParam, ApiBody } from '@nestjs/swagg
 import { PlacesService } from './places.service';
 import { CreatePlaceDto } from './dto/create-place.dto';
 import { UpdatePlaceDto } from './dto/update-place.dto';
+import { WithinDto } from './dto/within.dto';
 import { PlaceFeatureDto, PlaceFeatureCollectionDto } from './dto/place.response';
 
 @ApiTags('places')
@@ -45,6 +46,14 @@ export class PlacesController {
     @Query('radius') radius: string,
   ): Promise<PlaceFeatureCollectionDto> {
     return this.placesService.findNearby(parseFloat(lng), parseFloat(lat), parseFloat(radius));
+  }
+
+  @Post('within')
+  @HttpCode(HttpStatus.OK)
+  @ApiBody({ type: WithinDto, description: 'Find places inside a GeoJSON polygon (PostGIS ST_Within)' })
+  @ApiResponse({ status: 200, description: 'Places inside the polygon as GeoJSON FeatureCollection', type: PlaceFeatureCollectionDto })
+  async findWithin(@Body() dto: WithinDto): Promise<PlaceFeatureCollectionDto> {
+    return this.placesService.findWithin(dto.polygon);
   }
 
   @Get(':id')

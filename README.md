@@ -4,7 +4,7 @@
 ใช้ NestJS + TypeORM + PostgreSQL/PostGIS
 เก็บข้อมูลสถานที่เป็นพิกัดใน PostGIS แล้วส่งออกมาเป็น GeoJSON (`Feature` / `FeatureCollection`)
 
-เว็บจริง: http://spatial.api.project-hub.it.com · Swagger `/docs` · Scalar `/api-doc`
+เว็บจริง: https://spatial-api.project-hub.it.com · Swagger `/docs` · Scalar `/api-doc`
 
 > **ระบบนี้มี 2 repo** คู่กับหน้าบ้าน:
 > [`spatial-web`](https://github.com/blackenemy/spatial-web)

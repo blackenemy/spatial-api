@@ -841,7 +841,7 @@
   "variable": [
     {
       "key": "baseUrl",
-      "value": "http://spatial.api.project-hub.it.com",
+      "value": "https://spatial-api.project-hub.it.com",
       "type": "string"
     },
     {

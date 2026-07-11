@@ -29,12 +29,16 @@ jobs:
     needs: build
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: self-hosted
+    # Use a fresh, per-run npm cache so the shared (and repeatedly corrupted)
+    # /root/.npm cache is never touched.
+    env:
+      npm_config_cache: ${{ runner.temp }}/npm-cache
     steps:
       - uses: actions/checkout@v4
 
-      - name: Free disk space + clean npm cache
+      - name: Clean build artifacts
         run: |
-          rm -rf node_modules dist /root/.npm 2>/dev/null || true
+          rm -rf node_modules dist "$npm_config_cache" 2>/dev/null || true
           df -h .
 
       - name: Build
@@ -66,8 +70,8 @@ jobs:
         run: |
           ssh -i ~/.ssh/deploy_key "${DEPLOY_HOST}" 'set -e; \
             cd '"${REMOTE_DIR}"'; \
-            rm -rf /root/.npm 2>/dev/null || true; \
-            npm install --omit=dev --no-audit --no-fund; \
+            rm -rf /tmp/npm-cache-deploy; \
+            npm install --omit=dev --no-audit --no-fund --cache /tmp/npm-cache-deploy; \
             DATABASE_URL=postgres://spatial:spatial@'"${DB_HOST}"':5432/spatial \
             npx typeorm migration:run -d dist/database.js || true; \
             pm2 startOrReload ecosystem.config.cjs --update-env; \

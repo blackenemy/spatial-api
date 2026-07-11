@@ -29,21 +29,19 @@ jobs:
     needs: build
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: self-hosted
-    # Use a fresh, per-run npm cache so the shared (and repeatedly corrupted)
-    # /root/.npm cache is never touched.
-    env:
-      npm_config_cache: ${{ runner.temp }}/npm-cache
     steps:
       - uses: actions/checkout@v4
 
       - name: Clean build artifacts
         run: |
-          rm -rf node_modules dist "$npm_config_cache" 2>/dev/null || true
+          rm -rf node_modules dist "$RUNNER_TEMP/npm-cache" 2>/dev/null || true
           df -h .
 
+      # Use a fresh, per-run npm cache so the shared (and repeatedly corrupted)
+      # /root/.npm cache is never touched.
       - name: Build
         run: |
-          npm install --no-audit --no-fund
+          npm install --no-audit --no-fund --cache "$RUNNER_TEMP/npm-cache"
           npm run build
 
       - name: Setup SSH

@@ -18,8 +18,8 @@ async function seed() {
 
     const placesRepository = AppDataSource.getRepository(PlaceEntity);
 
-    // Clear existing data
-    await placesRepository.delete({});
+    // Clear existing data (TRUNCATE — empty criteria delete is rejected by TypeORM)
+    await placesRepository.clear();
     console.log('Cleared existing places');
 
     // Sample places around Bangkok

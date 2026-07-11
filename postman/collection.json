@@ -1,0 +1,789 @@
+{
+  "info": {
+    "name": "Mini Spatial Data Platform API",
+    "description": "API collection for the Mini Spatial Data Platform. Set the `baseUrl` variable to switch between local (http://localhost:5001) and the deployed API.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Places",
+      "item": [
+        {
+          "name": "List all places",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/places",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "places"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "List all places (200)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/places",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "places"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"id\": \"a161358c-7c67-45e9-a1fa-0feaf187b83c\",\n      \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          100.51,\n          13.7266\n        ]\n      },\n      \"properties\": {\n        \"name\": \"ไอคอนสยาม\",\n        \"type\": \"attraction\",\n        \"description\": \"ศูนย์การค้าริมแม่น้ำเจ้าพระยา\",\n        \"createdAt\": \"2026-07-11T13:25:09.493Z\"\n      }\n    },\n    {\n      \"type\": \"Feature\",\n      \"id\": \"9b005cd1-e6ff-4c8d-9827-52efc3669786\",\n      \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          100.53287,\n          13.74309\n        ]\n      },\n      \"properties\": {\n        \"name\": \"จุฬาลงกรณ์มหาวิทยาลัย\",\n        \"type\": \"school\",\n        \"description\": \"มหาวิทยาลัยแห่งแรกของประเทศไทย\",\n        \"createdAt\": \"2026-07-11T13:25:09.438Z\"\n      }\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "List places by bbox",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/places?bbox=100.48,13.64,100.56,13.76",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "places"
+              ],
+              "query": [
+                {
+                  "key": "bbox",
+                  "value": "100.48,13.64,100.56,13.76"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "List places by bbox (200)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/places?bbox=100.48,13.64,100.56,13.76",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "places"
+                  ],
+                  "query": [
+                    {
+                      "key": "bbox",
+                      "value": "100.48,13.64,100.56,13.76"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"id\": \"a161358c-7c67-45e9-a1fa-0feaf187b83c\",\n      \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          100.51,\n          13.7266\n        ]\n      },\n      \"properties\": {\n        \"name\": \"ไอคอนสยาม\",\n        \"type\": \"attraction\",\n        \"description\": \"ศูนย์การค้าริมแม่น้ำเจ้าพระยา\",\n        \"createdAt\": \"2026-07-11T13:25:09.493Z\"\n      }\n    },\n    {\n      \"type\": \"Feature\",\n      \"id\": \"9b005cd1-e6ff-4c8d-9827-52efc3669786\",\n      \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          100.53287,\n          13.74309\n        ]\n      },\n      \"properties\": {\n        \"name\": \"จุฬาลงกรณ์มหาวิทยาลัย\",\n        \"type\": \"school\",\n        \"description\": \"มหาวิทยาลัยแห่งแรกของประเทศไทย\",\n        \"createdAt\": \"2026-07-11T13:25:09.438Z\"\n      }\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "List places by type",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/places?type=cafe",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "places"
+              ],
+              "query": [
+                {
+                  "key": "type",
+                  "value": "cafe"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "List places by type (200)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/places?type=cafe",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "places"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "cafe"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": []\n}"
+            }
+          ]
+        },
+        {
+          "name": "Search places by name",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/places?q=school",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "places"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "school"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Search places by name (200)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/places?q=school",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "places"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "school"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": []\n}"
+            }
+          ]
+        },
+        {
+          "name": "Find nearby places",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/places/nearby?lng=100.5247&lat=13.7539&radius=5000",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "places",
+                "nearby"
+              ],
+              "query": [
+                {
+                  "key": "lng",
+                  "value": "100.5247"
+                },
+                {
+                  "key": "lat",
+                  "value": "13.7539"
+                },
+                {
+                  "key": "radius",
+                  "value": "5000"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Find nearby places (200)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/places/nearby?lng=100.5247&lat=13.7539&radius=5000",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "places",
+                    "nearby"
+                  ],
+                  "query": [
+                    {
+                      "key": "lng",
+                      "value": "100.5247"
+                    },
+                    {
+                      "key": "lat",
+                      "value": "13.7539"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "5000"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"id\": \"9b005cd1-e6ff-4c8d-9827-52efc3669786\",\n      \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          100.53287,\n          13.74309\n        ]\n      },\n      \"properties\": {\n        \"name\": \"จุฬาลงกรณ์มหาวิทยาลัย\",\n        \"type\": \"school\",\n        \"description\": \"มหาวิทยาลัยแห่งแรกของประเทศไทย\",\n        \"createdAt\": \"2026-07-11T13:25:09.438Z\"\n      }\n    },\n    {\n      \"type\": \"Feature\",\n      \"id\": \"a161358c-7c67-45e9-a1fa-0feaf187b83c\",\n      \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          100.51,\n          13.7266\n        ]\n      },\n      \"properties\": {\n        \"name\": \"ไอคอนสยาม\",\n        \"type\": \"attraction\",\n        \"description\": \"ศูนย์การค้าริมแม่น้ำเจ้าพระยา\",\n        \"createdAt\": \"2026-07-11T13:25:09.493Z\"\n      }\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get place by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/places/{{placeId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "places",
+                "{{placeId}}"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get place by ID (200)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/places/{{placeId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "places",
+                    "{{placeId}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"type\": \"Feature\",\n  \"id\": \"a161358c-7c67-45e9-a1fa-0feaf187b83c\",\n  \"geometry\": {\n    \"type\": \"Point\",\n    \"coordinates\": [\n      100.51,\n      13.7266\n    ]\n  },\n  \"properties\": {\n    \"name\": \"ไอคอนสยาม\",\n    \"type\": \"attraction\",\n    \"description\": \"ศูนย์การค้าริมแม่น้ำเจ้าพระยา\",\n    \"createdAt\": \"2026-07-11T13:25:09.493Z\"\n  }\n}"
+            },
+            {
+              "name": "Not found (404)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/places/{{placeId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "places",
+                    "{{placeId}}"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 404,\n  \"message\": \"Place with id b1060fdc-06e0-4e32-a7d1-7d1f2ead4ead not found\",\n  \"error\": \"Not Found\",\n  \"path\": \"/places/b1060fdc-06e0-4e32-a7d1-7d1f2ead4ead\",\n  \"timestamp\": \"2026-07-11T15:21:29.233Z\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Create place",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Test Cafe\",\n  \"type\": \"cafe\",\n  \"description\": \"created from Postman\",\n  \"geometry\": {\n    \"type\": \"Point\",\n    \"coordinates\": [100.5300, 13.7500]\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/places",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "places"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Create place (201)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Test Cafe\",\n  \"type\": \"cafe\",\n  \"description\": \"created from Postman\",\n  \"geometry\": {\n    \"type\": \"Point\",\n    \"coordinates\": [100.5300, 13.7500]\n  }\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/places",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "places"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"type\": \"Feature\",\n  \"id\": \"b1060fdc-06e0-4e32-a7d1-7d1f2ead4ead\",\n  \"geometry\": {\n    \"type\": \"Point\",\n    \"coordinates\": [\n      100.53,\n      13.75\n    ]\n  },\n  \"properties\": {\n    \"name\": \"Test Cafe\",\n    \"type\": \"cafe\",\n    \"description\": \"created from Postman\",\n    \"createdAt\": \"2026-07-11T15:21:28.837Z\"\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update place",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Test Cafe\",\n  \"type\": \"restaurant\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/places/{{placeId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "places",
+                "{{placeId}}"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Update place (200)",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Updated Test Cafe\",\n  \"type\": \"restaurant\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/places/{{placeId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "places",
+                    "{{placeId}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"type\": \"Feature\",\n  \"id\": \"b1060fdc-06e0-4e32-a7d1-7d1f2ead4ead\",\n  \"geometry\": {\n    \"type\": \"Point\",\n    \"coordinates\": [\n      100.53,\n      13.75\n    ]\n  },\n  \"properties\": {\n    \"name\": \"Updated Test Cafe\",\n    \"type\": \"restaurant\",\n    \"description\": \"created from Postman\",\n    \"createdAt\": \"2026-07-11T15:21:28.837Z\"\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete place",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/places/{{placeId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "places",
+                "{{placeId}}"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Delete place (204)",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/places/{{placeId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "places",
+                    "{{placeId}}"
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "body": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "OGC API - Features",
+      "item": [
+        {
+          "name": "Conformance",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/conformance",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "conformance"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Conformance (200)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/conformance",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "conformance"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"conformsTo\": [\n    \"http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core\",\n    \"http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson\",\n    \"http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30\"\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Collections",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/collections",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "collections"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Collections (200)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/collections",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "collections"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"collections\": [\n    {\n      \"id\": \"places\",\n      \"title\": \"Places\",\n      \"description\": \"Spatial places across Thailand (points, lines, polygons)\",\n      \"extent\": {\n        \"spatial\": {\n          \"bbox\": [\n            [\n              94,\n              5,\n              110,\n              21\n            ]\n          ],\n          \"crs\": \"http://www.opengis.net/def/crs/OGC/1.3/CRS84\"\n        }\n      },\n      \"itemType\": \"feature\",\n      \"crs\": [\n        \"http://www.opengis.net/def/crs/OGC/1.3/CRS84\"\n      ],\n      \"links\": [\n        {\n          \"rel\": \"items\",\n          \"href\": \"/collections/places/items\",\n          \"type\": \"application/geo+json\"\n        }\n      ]\n    }\n  ],\n  \"links\": [\n    {\n      \"rel\": \"self\",\n      \"href\": \"/collections\",\n      \"type\": \"application/json\"\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Collection metadata (places)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/collections/places",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "collections",
+                "places"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Collection metadata (places) (200)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/collections/places",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "collections",
+                    "places"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"places\",\n  \"title\": \"Places\",\n  \"description\": \"Spatial places across Thailand (points, lines, polygons)\",\n  \"extent\": {\n    \"spatial\": {\n      \"bbox\": [\n        [\n          94,\n          5,\n          110,\n          21\n        ]\n      ],\n      \"crs\": \"http://www.opengis.net/def/crs/OGC/1.3/CRS84\"\n    }\n  },\n  \"itemType\": \"feature\",\n  \"crs\": [\n    \"http://www.opengis.net/def/crs/OGC/1.3/CRS84\"\n  ],\n  \"links\": [\n    {\n      \"rel\": \"items\",\n      \"href\": \"/collections/places/items\",\n      \"type\": \"application/geo+json\"\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Collection items (FeatureCollection)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/collections/places/items",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "collections",
+                "places",
+                "items"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Collection items (FeatureCollection) (200)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/collections/places/items",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "collections",
+                    "places",
+                    "items"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"id\": \"a161358c-7c67-45e9-a1fa-0feaf187b83c\",\n      \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          100.51,\n          13.7266\n        ]\n      },\n      \"properties\": {\n        \"name\": \"ไอคอนสยาม\",\n        \"type\": \"attraction\",\n        \"description\": \"ศูนย์การค้าริมแม่น้ำเจ้าพระยา\",\n        \"createdAt\": \"2026-07-11T13:25:09.493Z\"\n      }\n    },\n    {\n      \"type\": \"Feature\",\n      \"id\": \"9b005cd1-e6ff-4c8d-9827-52efc3669786\",\n      \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          100.53287,\n          13.74309\n        ]\n      },\n      \"properties\": {\n        \"name\": \"จุฬาลงกรณ์มหาวิทยาลัย\",\n        \"type\": \"school\",\n        \"description\": \"มหาวิทยาลัยแห่งแรกของประเทศไทย\",\n        \"createdAt\": \"2026-07-11T13:25:09.438Z\"\n      }\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Single item (Feature)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/collections/places/items/{{placeId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "collections",
+                "places",
+                "items",
+                "{{placeId}}"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Single item (Feature) (200)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/collections/places/items/{{placeId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "collections",
+                    "places",
+                    "items",
+                    "{{placeId}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"type\": \"Feature\",\n  \"id\": \"a161358c-7c67-45e9-a1fa-0feaf187b83c\",\n  \"geometry\": {\n    \"type\": \"Point\",\n    \"coordinates\": [\n      100.51,\n      13.7266\n    ]\n  },\n  \"properties\": {\n    \"name\": \"ไอคอนสยาม\",\n    \"type\": \"attraction\",\n    \"description\": \"ศูนย์การค้าริมแม่น้ำเจ้าพระยา\",\n    \"createdAt\": \"2026-07-11T13:25:09.493Z\"\n  }\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://spatial.api.project-hub.it.com",
+      "type": "string"
+    },
+    {
+      "key": "placeId",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}

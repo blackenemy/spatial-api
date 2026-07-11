@@ -1,0 +1,34 @@
+# Self-contained backend: PostGIS + API.
+#   docker compose up --build
+# API on http://localhost:3000 (Swagger /docs, Scalar /api-doc). Migrations run on boot.
+# Load sample data:  docker compose exec api node dist/seed.js
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    environment:
+      POSTGRES_USER: spatial
+      POSTGRES_PASSWORD: spatial
+      POSTGRES_DB: spatial
+    ports:
+      - "5432:5432"
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U spatial -d spatial"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build: .
+    environment:
+      DATABASE_URL: postgres://spatial:spatial@db:5432/spatial
+      PORT: "3000"
+    ports:
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  dbdata:

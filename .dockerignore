@@ -1,0 +1,11 @@
+node_modules
+dist
+_server_ref
+.env
+.env.*
+*.log
+openapi.json
+docker-compose*.yml
+Dockerfile
+postman
+README.md

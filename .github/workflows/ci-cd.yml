@@ -6,10 +6,12 @@ on:
   pull_request:
     branches: [main]
 
+permissions:
+  contents: read
+
 env:
   DEPLOY_HOST: root@10.0.0.6
   REMOTE_DIR: /opt/spatial/api
-  DB_HOST: "10.0.0.5"
 
 jobs:
   build:
@@ -27,6 +29,7 @@ jobs:
   deploy:
     name: Deploy → 10.0.0.6
     needs: build
+    # repo เป็น public: เฉพาะ push ลง main เท่านั้นที่ได้วิ่งบน runner 108 — ห้ามเปิดให้ pull_request
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: self-hosted
     steps:
@@ -65,12 +68,14 @@ jobs:
             "${DEPLOY_HOST}:${REMOTE_DIR}/"
 
       - name: Install deps + migrate + reload
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: |
           ssh -i ~/.ssh/deploy_key "${DEPLOY_HOST}" 'set -e; \
             cd '"${REMOTE_DIR}"'; \
             rm -rf /tmp/npm-cache-deploy; \
             npm install --omit=dev --no-audit --no-fund --cache /tmp/npm-cache-deploy; \
-            DATABASE_URL=postgres://spatial:spatial@'"${DB_HOST}"':5432/spatial \
+            DATABASE_URL='"'${DATABASE_URL}'"' \
             npx typeorm migration:run -d dist/database.js || true; \
             pm2 startOrReload ecosystem.config.cjs --update-env; \
             pm2 save'
